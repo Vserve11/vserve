@@ -1,3 +1,21 @@
+<?php
+session_start();
+//connect to database
+$db=mysqli_connect("localhost","root","","naidu");
+if(isset($_POST['submit']))
+{
+    $fullname=($_POST['fullname']);
+    $email=($_POST['email']);
+    $mobile=($_POST['mobile']);
+    $area=($_POST['area']);
+	$activity=($_POST['activity']);
+	$address=($_POST['address']);
+            $sql="INSERT INTO torder(fullname,email,mobile,area,activity,address) VALUES('$fullname','$email','$mobile','$area','$activity','$address')";
+            mysqli_query($db,$sql);  
+            $_SESSION['message']="order placed successfully"; 
+            header("location:home.php"); 
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,35 +63,38 @@ input[type=number],input[type=email]{
     margin-bottom: 16px;
     resize: vertical;
 }
+#mobile{
+	border-radius:4px;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+}
+
 
 </style>
 </head>
 <body>
 <div class="container">
-  <form action="/action_page.php" method="post">
+  <form action="contact.php" method="post">
     <label for="fname">Full Name:</label>
-    <input type="text" id="fname" name="firstname" placeholder="Full name..">
+    <input type="text" id="fname" name="fullname" placeholder="Full name..">
 
-    <label for="lname">Mobile Number:</label>
-    <input type="number" id="lname" name="lastname" placeholder="Mobile Number.." maxlength="10">
+    <label for="lname">Email:</label>
+    <input type="email" id="lname" name="email" placeholder="Email.." maxlength="40">
 	
-	<label for="lname">Email Address:</label>
-    <input type="Email" id="lname" name="lastname" placeholder="Email Address.." maxlength="40">
-
-    <label for="country">Area:</label>
-    <select id="country" name="country">
-      <option value="australia">Tagarapuvalasa</option>
-      <option value="canada">Anandapuram</option>
-      <option value="usa">Maddilapalem</option>
-    </select>
+	<label for="lname">Mobile:</label>
+    <input type="mobile" id="mobile" name="mobile" placeholder="Mobile.." maxlength="10" style="width:100%;height:38px;" >
+	
+ <label for="fname">Area:</label>
+    <input type="text" id="fname" name="area" placeholder="area..">
+   
 	
 	 <label for="subject">Activity:</label>
-    <textarea id="subject" name="subject" placeholder="Enter your requirements " style="height:100px"></textarea>
+    <textarea id="subject" name="activity" placeholder="Enter your requirements " style="height:100px"></textarea>
 
     <label for="subject">Address:</label>
-    <textarea id="subject" name="subject" placeholder="Write Address.." style="height:200px"></textarea>
+    <textarea id="subject" name="address" placeholder="Write Address.." style="height:200px"></textarea>
 
-    <input type="submit" value="Submit">
+    <input type="submit" name="submit" value="Submit">
   </form>
 </div>
 </body>

@@ -12,10 +12,10 @@ if(isset($_POST['register_btn']))
      {           //Create User
             $password=md5($password); //hash password before storing for security purposes
             $sql="INSERT INTO reg(username,email,password) VALUES('$username','$email','$password')";
-            mysqli_query($db,$sql);  
-            $_SESSION['message']="You are now logged in"; 
-            $_SESSION['username']=$username;
-            header("location:home.php");  //redirect home page
+            mysqli_query($db,$sql);   
+			$_SESSION['message']="Login Again To Access Account";
+            header("location:login.php");
+			
     }
     else
     {
@@ -26,6 +26,13 @@ if(isset($_POST['register_btn']))
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+table{
+	border-collapse: collapse;
+	width:75%;
+}
+	
+	</style>
   <title>Register</title>
   <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
@@ -44,23 +51,23 @@ if(isset($_POST['register_btn']))
   <table>
      <tr>
            <td>Username : </td>
-           <td><input type="text" name="username" class="textInput"></td>
+           <td><input type="text" name="username" class="textInput" required></td>
      </tr>
      <tr>
            <td>Email : </td>
-           <td><input type="email" name="email" class="textInput"></td>
+           <td><input type="email" name="email" class="textInput" required></td>
      </tr>
       <tr>
            <td>Password : </td>
-           <td><input type="password" name="password" class="textInput"></td>
+           <td><input type="password" name="password" class="textInput" required></td>
      </tr>
       <tr>
            <td>Confirm Password</td>
-           <td><input type="password" name="password2" class="textInput"></td>
+           <td><input type="password" name="password2" class="textInput" required></td>
      </tr>
       <tr>
            <td></td>
-           <td><input type="submit" name="register_btn" class="Register"></td>
+           <td><center><input type="submit" name="register_btn" class="Register" value="REGISTER"></center></td>
      </tr>
  
 </table>

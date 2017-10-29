@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+//connect to database
+$db=mysqli_connect("localhost","root","","naidu");
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +62,7 @@ ul {
     padding:0;
     overflow: hidden;
     background-color: #333;
-	width:50.58%;	
+	width:656.5px;	
 }
 
 li {
@@ -131,9 +139,30 @@ div.btn1{
 	right:400px;
 
 }
+.nani{
+	position:absolute;
+	right:150px;
+	top:1px;
+}
 </style>
 </head>
 <body>
+<?php
+    if(isset($_SESSION['message']))
+    {
+         echo "<div id='error_msg'>".$_SESSION['message']."</div>";
+         unset($_SESSION['message']);
+    }
+?>
+<div class="nani">
+    <h4><?php echo $_SESSION['username']; ?></h4>
+	</div>
+<div class="dropdown" style="float:right;">
+  <button class="dropbtn">ACCOUNT</button>
+  <div class="dropdown-content">
+    <a href="logout.php">LOG OUT</a>
+  </div>
+</div>
 <center>
 <ul>
 <li><a href="mainhome.php">HOME</a></li>
@@ -145,13 +174,6 @@ div.btn1{
   
   </ul>
   </center>
-<div class="dropdown" style="float:right;">
-  <button class="dropbtn">ACCOUNT</button>
-  <div class="dropdown-content">
-    <a href="login.php">LOGIN</a>
-    <a href="register.php">SIGNUP</a>
-  </div>
-</div>
 <center>
 <div class="polaroid">
   <img src="video.jpg" alt="Norway" width="20" height="190" style="width:100%">
@@ -168,11 +190,11 @@ div.btn1{
   </div>
 </div>
 </center>
-<a href="contact.php"><div class="btn">
+<a href="porder.php"><div class="btn">
 <p>MAKE ORDER<P>
 </div>
 </a>
-<a href="contact.php"><div class="btn1">
+<a href="porder.php"><div class="btn1">
 <p>MAKE ORDER<P>
 </div>
 </a>

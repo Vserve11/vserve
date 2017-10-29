@@ -1,0 +1,65 @@
+<DOCTYPE! html>
+<html>
+<head>
+<title>Orders</title>
+<style type="text/css">
+table{
+	border: 2px solid teal;
+	background-color: #76D7C4  ;
+	border-collapse: collapse;
+	width:100%;
+	
+}
+
+th {
+	border-bottom: 3px solid #17202A;
+	border-right: 2px solid #17202A;
+	border-collapse: collapse;
+	 padding: 1opx;
+}
+
+td {
+	border-bottom: 2px solid #17202A;
+	border-right: 2px solid #17202A;
+	border-collapse: collapse;
+	 padding: 10px;
+}
+</style>
+</head>
+<body>
+<h1> Orders</h1>
+</body>
+</html>
+
+<?php 
+$db=mysqli_connect("localhost","root","","naidu");
+
+$sql="SELECT * FROM carorder";
+$sqldata= mysqli_query($db,$sql) or die('error getting data');
+
+echo "<table>";
+echo "<tr><th>ID</th><th>Full Nmae</th><th>Mobile</th><th>Email</th><th>Area</th><th>Activity</th><th>Source Address</th><th>Destination Address</th>";
+
+while($row = mysqli_fetch_array($sqldata, MYSQLI_ASSOC)) {
+	
+echo "<tr><td>";
+echo $row['id'];
+echo "</td><td>";
+echo $row['fullname'];
+echo "</td><td>";
+echo $row['mobile'];
+echo "</td><td>";
+echo $row['email'];
+echo "</td><td>";
+echo $row['area'];
+echo "</td><td>";
+echo $row['activity'];
+echo "</td><td>";
+echo $row['source'];
+echo "</td><td>";
+echo $row['destination'];
+echo "</td></tr>";
+}
+echo "</table>";
+
+?>

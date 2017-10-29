@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+//connect to database
+$db=mysqli_connect("localhost","root","","naidu");
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +62,7 @@ ul {
     padding:0;
     overflow: hidden;
     background-color: #333;
-	width:50.58%;	
+	width:656.5px;	
 }
 
 li {
@@ -110,17 +118,38 @@ div.btn1{
     margin: 4px 2px;
     cursor: pointer;
 	position:absolute;
-	bottom:300px;
+	bottom:250px;
 	right:400px;
 
 }
 .active{
 	background-color:#4CAF50;
 }
+.nani{
+	position:absolute;
+	right:150px;
+	top:1px;
+}
 
 </style>
 </head>
 <body>
+<?php
+    if(isset($_SESSION['message']))
+    {
+         echo "<div id='error_msg'>".$_SESSION['message']."</div>";
+         unset($_SESSION['message']);
+    }
+?>
+<div class="nani">
+    <h4><?php echo $_SESSION['username']; ?></h4>
+	</div>
+<div class="dropdown" style="float:right;">
+  <button class="dropbtn">ACCOUNT</button>
+  <div class="dropdown-content">
+    <a href="logout.php">LOG OUT</a>
+  </div>
+</div>
 <center>
 <ul>
   <li><a href="mainhome.php">HOME</a></li>
@@ -131,21 +160,14 @@ div.btn1{
    <li><a href="grocery.php">GROCERY</a></li>
   </ul>
   </center>
-<div class="dropdown" style="float:right;">
-  <button class="dropbtn">ACCOUNT</button>
-  <div class="dropdown-content">
-    <a href="login.php">LOGIN</a>
-    <a href="register.php">SIGNUP</a>
-  </div>
-</div>
 <center>
 <div class="polaroid">
-  <img src="men.jpg" alt="Norway" width="20" height="190" style="width:100%">
+  <img src="carriage.jpg" alt="Norway" width="20" height="190" style="width:100%">
   <div class="container">
     <p>CARRIAGE DELIVERY</p>
   </div>
   </div>
-<a href="car.php">
+<a href="contact.php">
 <div class="btn1">
 <p>MAKE ORDER<P>
 </div>
